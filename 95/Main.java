@@ -1,36 +1,50 @@
 import java.util.*;
 
 public class Main {
+  static int N, M;
+  static List<Integer>[] S = new ArrayList[10];
+  static int[] P = new int[10];
+
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
 
-    String line = sc.nextLine();
-    String[] parts = line.split(" ");
+    N = sc.nextInt();
+    M = sc.nextInt();
 
-    int a = Integer.parseInt(parts[0]);
-    int b = Integer.parseInt(parts[1]);
-    int c = Integer.parseInt(parts[2]);
-    int x = Integer.parseInt(parts[3]);
-    int y = Integer.parseInt(parts[4]);
-    int ans = Integer.MAX_VALUE;
+    for (int i = 0; i < M; i++) {
+      S[i] = new ArrayList<>();
+      int k = sc.nextInt();
+      for (int j = 0; j < k; j++) {
+        int s = sc.nextInt() - 1; // 0-based indexにする
+        S[i].add(s);
+      }
+    }
 
-    // abはabピザの枚数
-    // sumは合計金額
+    for (int i = 0; i < M; i++) {
+      P[i] = sc.nextInt();
+    }
 
-    for (int ab = 0; ab < 210000; ab++) {
-      int sum = c * ab;
+    sc.close();
 
-      int X = x - ab / 2;
-      int Y = y - ab / 2;
-
-      if (X > 0)
-        sum += X * a;
-      if (Y > 0)
-        sum += Y * b;
-
-      ans = Math.min(ans, sum);
+    // bit全探索
+    int ans = 0; // 条件を満たす電球の合計カウント
+    for (int msk = 0; msk < (1 << N); msk++) {
+      int ok = 0; // 条件を満たす電球の一時的カウント,これが全てである場合ans++
+      for (int m = 0; m < M; m++) {
+        int cnt = 0; // ONになっているスイッチのカウント
+        for (int s : S[m]) {
+          if ((msk & (1 << s)) != 0) {
+            cnt++;
+          }
+        }
+        if (cnt % 2 == P[m]) {
+          ok++;
+        }
+      }
+      if (ok == M) {
+        ans++;
+      }
     }
     System.out.println(ans);
-    sc.close();
   }
 }
