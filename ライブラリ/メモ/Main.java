@@ -1,3 +1,4 @@
+package ライブラリ.メモ;
 import java.util.*;
 
 public class Main {

@@ -1,3 +1,4 @@
+package ライブラリ.ビット全探索_1;
 import java.util.*;
 
 public class Main {

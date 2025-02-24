@@ -1,3 +1,4 @@
+package ライブラリ.全探索.B;
 import java.util.Scanner;
 
 public class Main {

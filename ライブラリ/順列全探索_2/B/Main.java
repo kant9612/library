@@ -1,3 +1,4 @@
+package ライブラリ.順列全探索_2.B;
 import java.util.Scanner;
 
 public class Main {
