@@ -1,4 +1,5 @@
 package ライブラリ.メモ;
+
 import java.util.*;
 
 public class Main {
@@ -6,16 +7,16 @@ public class Main {
     Scanner sc = new Scanner(System.in);
 
     // ①数字が1つ
-    int n = sc.nextInt();
+    int N = sc.nextInt();
     // ②数字が2つ以上で別々に受け取り（空白区切り）
-    int a = sc.nextInt();
-    int b = sc.nextInt();
+    int A = sc.nextInt();
+    int B = sc.nextInt();
     // ②数字が2つ以上で別々に受け取り（1行の入力を受け取り、空白で分割）※空白以外でも分割できる
     String line = sc.nextLine();
     String[] parts = line.split(" ");
 
-    int a = Integer.parseInt(parts[0]);
-    int b = Integer.parseInt(parts[1]);
+    int A = Integer.parseInt(parts[0]);
+    int B = Integer.parseInt(parts[1]);
 
     // ③文字列が1つ
     // 単語1つのみ
@@ -28,13 +29,13 @@ public class Main {
 
     // ⑤-1リストで受け取り
     // リストのサイズを受け取る
-    int n = sc.nextInt();
+    int N = sc.nextInt();
 
     // 数値リストを格納する
     List<Integer> list = new ArrayList<>();
 
     // `n` 個の整数を受け取る
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < N; i++) {
       list.add(sc.nextInt());
     }
 
@@ -47,14 +48,46 @@ public class Main {
 
     // ⑥複数行リストの受け取り
     // 行数を受け取る
-    int n = sc.nextInt();
+    int N = sc.nextInt();
     sc.nextLine(); // 改行を消費
 
     // 複数行のリストを格納
     List<String> list = new ArrayList<>();
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < N; i++) {
       list.add(sc.nextLine()); // 1行ずつリストに追加
+    }
+
+    // GRIDの表示方法
+    int R = sc.nextInt(); // 行数
+    int C = sc.nextInt(); // 列数
+    String S = sc.nextLine(); // 改行を消費
+    int sy = sc.nextInt();
+    int sx = sc.nextInt();
+    String T = sc.nextLine(); // 改行を消費
+    int gy = sc.nextInt();
+    int gx = sc.nextInt();
+    char[][] grid = new char[R][C];
+    for (int i = 0; i < R; i++) {
+      String line = sc.nextLine();
+      grid[i] = line.toCharArray();
+    }
+    System.out.println(bfs(grid, sx, sy, gx, gy));
+    // gridの表示方法
+    // for (char[] row : grid) {
+    // System.out.println(new String(row));
+    // }
+
+    // スタート位置を探す
+    int startX = 0, startY = 0;
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < cols; j++) {
+        if (grid[i][j] == 'S') {
+          startX = i;
+          startY = j;
+          break;
+        }
+      }
     }
 
     sc.close();
