@@ -1,5 +1,5 @@
 // フィボナッチ数列
-package ライブラリ.DP_1;
+package ライブラリ.DP;
 
 import java.util.Scanner;
 
