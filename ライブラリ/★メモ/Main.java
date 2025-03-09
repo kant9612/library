@@ -90,6 +90,15 @@ public class Main {
       }
     }
 
+    // 行列の行数と列数
+    int[] r = new int[n]; // 行列の行数
+    int[] c = new int[n]; // 行列の列数
+
+    for (int i = 0; i < n; i++) {
+      r[i] = sc.nextInt();
+      c[i] = sc.nextInt();
+    }
+
     sc.close();
   }
 }
