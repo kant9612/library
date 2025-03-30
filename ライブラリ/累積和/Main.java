@@ -1,8 +1,6 @@
 // 累積和問題
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
   public static void main(String[] args) {
@@ -23,7 +21,7 @@ public class Main {
     // 各kに対して、連続するk個の最大の区間和を求めて出力
     for (int k = 1; k <= N; k++) {
       long maxSum = Long.MIN_VALUE;
-      for (int i = 0; i <= N; i++) {
+      for (int i = 0; i <= N - k; i++) {
         long sum = prefixSum[i + k] - prefixSum[i];
         if (sum > maxSum) {
           maxSum = sum;
