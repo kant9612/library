@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Main {
@@ -5,29 +7,48 @@ public class Main {
     Scanner sc = new Scanner(System.in);
 
     int N = sc.nextInt();
-    int[] P = new int[N];
-    for (int i = 0; i < N; i++) {
-      P[i] = sc.nextInt() - 1; // 1-based → 0-based
-    }
-    int[] Q = new int[N];
-    for (int i = 0; i < N; i++) {
-      Q[i] = sc.nextInt(); // ゼッケン番号そのまま
+    int Q = sc.nextInt();
+
+    // 各巣にいる鳩の数をカウント（各1〜Nの巣に初めは1羽ずつ）
+    int[] cnt = new int[N + 1];
+    for (int i = 1; i <= N; i++) {
+      cnt[i] = 1;
     }
 
-    int[] S = new int[N];
-    for (int i = 0; i < N; i++) {
-      S[Q[i] - 1] = Q[P[i]];
+    // 鳩Pがどの巣にいるかを記録（最初はP番の巣にいる）
+    int[] pos = new int[N + 1];
+    for (int i = 0; i <= N; i++) {
+      pos[i] = i;
     }
 
-    // 出力：最後だけ改行、それ以外はスペース区切り
-    for (int i = 0; i < N; i++) {
-      if (i < N - 1) {
-        System.out.print(S[i] + " ");
+    int ans = 0; // 鳩が2羽以上いる巣の数
+
+    for (int i = 0; i < Q; i++) {
+      int type = sc.nextInt();
+      // 「1」：鳩の移動
+      if (type == 1) {
+        int P = sc.nextInt();
+        int H = sc.nextInt();
+
+        int oldNest = pos[P];
+        // 元の巣にいる鳩の数が1以下になったらカウント対象ではなくなる
+        if (cnt[oldNest] == 2) {
+          ans--;
+        }
+        cnt[oldNest]--; // 実際にその巣から鳩を減らす
+
+        // 鳩PをHに移動する
+        pos[P] = H;
+        if (cnt[H] == 1) {
+          ans++;
+        }
+        cnt[H]++;
+
       } else {
-        System.out.println(S[i]);
+        // 「2」：複数鳩がいる巣の数を算出して出力
+        System.out.println(ans);
       }
     }
-
     sc.close();
   }
 }
