@@ -17,7 +17,7 @@ public class Main {
         int val = -1;
         int len = 0;
         // ストライド w で要素を辿る
-        for (int i = 0; i < n; i += w) {
+        for (int i = si; i < n; i += w) {
           int x = h[i];
           if (x == val) {
             len++;
